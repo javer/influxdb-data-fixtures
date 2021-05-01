@@ -3,7 +3,7 @@ InfluxDB Data Fixtures
 
 The InfluxDB Data Fixtures is a library that provides data fixtures functionality for InfluxDB.
 
-[![Build Status](https://secure.travis-ci.org/javer/influxdb-data-fixtures.png?branch=master)](http://travis-ci.org/javer/influxdb-data-fixtures)
+[![Build Status](https://github.com/javer/influxdb-data-fixtures/actions/workflows/test.yaml/badge.svg)](https://github.com/javer/influxdb-data-fixtures/actions/workflows/test.yaml)
 
 Installation
 ============
@@ -30,7 +30,7 @@ To execute the InfluxDB fixtures:
 use Javer\InfluxDB\DataFixtures\Executor\MeasurementExecutor;
 use Javer\InfluxDB\DataFixtures\Purger\MeasurementPurger;
 
-$purger = new MeasurementPurger();
+$purger = new MeasurementPurger($measurementManager);
 $executor = new MeasurementExecutor($measurementManager, $purger);
 $executor->execute($loader->getFixtures());
 ```
