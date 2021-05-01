@@ -3,6 +3,7 @@
 namespace Javer\InfluxDB\DataFixtures\Purger;
 
 use Doctrine\Common\DataFixtures\Purger\PurgerInterface;
+use Javer\InfluxDB\ODM\Mapping\ClassMetadata;
 use Javer\InfluxDB\ODM\MeasurementManager;
 
 /**
@@ -77,6 +78,8 @@ class MeasurementPurger implements PurgerInterface
         $database = $this->measurementManager->getDatabase();
 
         foreach ($this->measurementManager->getMetadataFactory()->getAllMetadata() as $metadata) {
+            assert($metadata instanceof ClassMetadata);
+
             if ($this->getPurgeMode() === self::PURGE_MODE_DELETE) {
                 $database->query(sprintf('DELETE FROM "%s"', $metadata->getMeasurement()));
             } else {

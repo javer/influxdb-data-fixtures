@@ -3,6 +3,7 @@
 namespace Javer\InfluxDB\DataFixtures\Executor;
 
 use Doctrine\Common\DataFixtures\Executor\AbstractExecutor;
+use Doctrine\Common\DataFixtures\FixtureInterface;
 use Javer\InfluxDB\DataFixtures\Purger\MeasurementPurger;
 use Javer\InfluxDB\ODM\MeasurementManager;
 
@@ -36,8 +37,8 @@ class MeasurementExecutor extends AbstractExecutor
     /**
      * Execute.
      *
-     * @param array   $fixtures
-     * @param boolean $append
+     * @param FixtureInterface[] $fixtures
+     * @param boolean            $append
      */
     public function execute(array $fixtures, $append = false): void
     {
