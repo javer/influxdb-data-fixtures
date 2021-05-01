@@ -7,21 +7,10 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Javer\InfluxDB\DataFixtures\Purger\MeasurementPurger;
 use Javer\InfluxDB\ODM\MeasurementManager;
 
-/**
- * Class MeasurementExecutor
- *
- * @package Javer\InfluxDB\DataFixtures\Executor
- */
 class MeasurementExecutor extends AbstractExecutor
 {
     private MeasurementManager $measurementManager;
 
-    /**
-     * MeasurementExecutor constructor.
-     *
-     * @param MeasurementManager     $measurementManager
-     * @param MeasurementPurger|null $purger
-     */
     public function __construct(MeasurementManager $measurementManager, ?MeasurementPurger $purger = null)
     {
         $this->measurementManager = $measurementManager;
@@ -38,7 +27,7 @@ class MeasurementExecutor extends AbstractExecutor
      * Execute.
      *
      * @param FixtureInterface[] $fixtures
-     * @param boolean            $append
+     * @param bool               $append
      */
     public function execute(array $fixtures, $append = false): void
     {

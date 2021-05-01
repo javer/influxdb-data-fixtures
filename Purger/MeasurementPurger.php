@@ -6,11 +6,6 @@ use Doctrine\Common\DataFixtures\Purger\PurgerInterface;
 use Javer\InfluxDB\ODM\Mapping\ClassMetadata;
 use Javer\InfluxDB\ODM\MeasurementManager;
 
-/**
- * Class MeasurementPurger
- *
- * @package Javer\InfluxDB\DataFixtures\Purger
- */
 class MeasurementPurger implements PurgerInterface
 {
     public const PURGE_MODE_DELETE   = 1;
@@ -20,59 +15,31 @@ class MeasurementPurger implements PurgerInterface
 
     private int $purgeMode = self::PURGE_MODE_TRUNCATE;
 
-    /**
-     * MeasurementPurger constructor.
-     *
-     * @param MeasurementManager $measurementManager
-     */
     public function __construct(MeasurementManager $measurementManager)
     {
         $this->measurementManager = $measurementManager;
     }
 
-    /**
-     * Set the purge mode
-     *
-     * @param integer $mode
-     */
     public function setPurgeMode(int $mode): void
     {
         $this->purgeMode = $mode;
     }
 
-    /**
-     * Get the purge mode
-     *
-     * @return integer
-     */
     public function getPurgeMode(): int
     {
         return $this->purgeMode;
     }
 
-    /**
-     * Set measurementManager.
-     *
-     * @param MeasurementManager $measurementManager
-     */
     public function setMeasurementManager(MeasurementManager $measurementManager): void
     {
         $this->measurementManager = $measurementManager;
     }
 
-    /**
-     * Returns measurementManager.
-     *
-     * @return MeasurementManager
-     */
     public function getMeasurementManager(): MeasurementManager
     {
         return $this->measurementManager;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function purge(): void
     {
         $database = $this->measurementManager->getDatabase();
