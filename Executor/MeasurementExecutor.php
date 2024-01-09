@@ -7,14 +7,13 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Javer\InfluxDB\DataFixtures\Purger\MeasurementPurger;
 use Javer\InfluxDB\ODM\MeasurementManager;
 
-class MeasurementExecutor extends AbstractExecutor
+final class MeasurementExecutor extends AbstractExecutor
 {
-    private MeasurementManager $measurementManager;
-
-    public function __construct(MeasurementManager $measurementManager, ?MeasurementPurger $purger = null)
+    public function __construct(
+        private readonly MeasurementManager $measurementManager,
+        ?MeasurementPurger $purger = null,
+    )
     {
-        $this->measurementManager = $measurementManager;
-
         if ($purger !== null) {
             $this->purger = $purger;
             $this->purger->setMeasurementManager($measurementManager);
